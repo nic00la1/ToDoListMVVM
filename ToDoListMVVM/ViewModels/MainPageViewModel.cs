@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using ToDoListMVVM.Models;
+using ToDoListMVVM;
 
 namespace ToDoListMVVM.ViewModels
 {
@@ -17,7 +17,7 @@ namespace ToDoListMVVM.ViewModels
             }
         }
 
-        public ObservableCollection<Models.Task> Tasks { get; set; } = new ObservableCollection<Models.Task>();
+        public ObservableCollection<Task> Tasks { get; set; } = new ObservableCollection<Task>();
 
         public ICommand AddTaskCommand { get; }
         public ICommand RemoveTaskCommand { get; }
@@ -25,23 +25,40 @@ namespace ToDoListMVVM.ViewModels
         public MainPageViewModel()
         {
             AddTaskCommand = new Command(AddTask);
-            RemoveTaskCommand = new Command<Models.Task>(RemoveTask);
+            RemoveTaskCommand = new Command<Task>(RemoveTask);
         }
 
         private void AddTask()
         {
             if (!string.IsNullOrWhiteSpace(NewTaskDescription))
             {
-                Tasks.Add(new Models.Task { Description = NewTaskDescription });
+                Tasks.Add(new Task
+                {
+                    Description = NewTaskDescription,
+                    DateAdded = DateTime.Now,
+                    IsEnabled = true
+                });
                 NewTaskDescription = string.Empty;
             }
         }
 
-        private void RemoveTask(Models.Task task)
+        private void RemoveTask(Task task)
         {
             if (Tasks.Contains(task))
             {
                 Tasks.Remove(task);
+            }
+        }
+
+        public void OnTaskCompletedChanged(Task task)
+        {
+            if (task.IsCompleted)
+            {
+                task.DateCompleted = DateTime.Now;
+            }
+            else
+            {
+                task.DateCompleted = null;
             }
         }
     }

@@ -21,10 +21,13 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <Grid ColumnDefinitions="*, Auto">
-                                    <Label Grid.Column="0" Text="{Binding Description}" TextColor="Red" />
-                                    <Button Grid.Column="1" Text="Usuń" Command="{Binding Source={x:Reference MainPageInstance}, Path=BindingContext.RemoveTaskCommand}" CommandParameter="{Binding .}" BackgroundColor="Red" CornerRadius="8" />
+                                <Grid ColumnDefinitions="Auto, *, Auto">
+                                    <CheckBox Grid.Column="0" IsChecked="{Binding IsCompleted, Mode=TwoWay}" CheckedChanged="OnTaskCompletedChanged" />
+                                    <Label Grid.Column="1" Text="{Binding Description}" TextColor="Red" />
+                                    <Button Grid.Column="2" Text="Usuń" Command="{Binding Source={x:Reference MainPageInstance}, Path=BindingContext.RemoveTaskCommand}" CommandParameter="{Binding .}" BackgroundColor="Red" CornerRadius="8" />
                                 </Grid>
+                                <Label Text="{Binding DateAdded, StringFormat='Dodano: {0:dd-MM-yyyy HH:mm:ss}'}" TextColor="Gray" FontSize="12" />
+                                <Label Text="{Binding DateCompleted, StringFormat='Wykonano: {0:dd-MM-yyyy HH:mm:ss}'}" TextColor="Green" FontSize="12" IsVisible="{Binding IsCompleted}" />
                                 <BoxView HeightRequest="1" BackgroundColor="Black" />
                             </StackLayout>
                         </DataTemplate>
