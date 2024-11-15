@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:ToDoListMVVM.ViewModels"
              x:Class="ToDoListMVVM.MainPage"
-             x:Name="MainPageInstance">
+             x:Name="MainPageInstance"
+             Background="White">
 
     <ContentPage.BindingContext>
         <vm:MainPageViewModel />
@@ -12,8 +13,8 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="5">
             <Grid ColumnDefinitions="*, Auto" Padding="16">
-                <Entry Grid.Column="0" Placeholder="Nowe zadanie" Text="{Binding NewTaskDescription}" />
-                <Button Grid.Column="1" Text="Dodaj" Command="{Binding AddTaskCommand}" BackgroundColor="Red" CornerRadius="8" />
+                <Entry Grid.Column="0" Placeholder="Nowe zadanie" Text="{Binding NewTaskDescription}" TextColor="Black"/>
+                <Button Grid.Column="1" Text="Dodaj" Command="{Binding AddTaskCommand}" BackgroundColor="Red" CornerRadius="8" TextColor="White"/>
             </Grid>
 
             <StackLayout Padding="16">
@@ -25,7 +26,7 @@
                                     <CheckBox Grid.Column="0" IsChecked="{Binding IsCompleted, Mode=TwoWay}" CheckedChanged="OnTaskCompletedChanged" />
                                     <Label Grid.Column="1" Text="{Binding Description}" TextColor="Red" 
                                            FontSize="20"/>
-                                    <Button Grid.Column="2" Text="Usuń" Command="{Binding Source={x:Reference MainPageInstance}, Path=BindingContext.RemoveTaskCommand}" CommandParameter="{Binding .}" BackgroundColor="Red" CornerRadius="8" />
+                                    <Button Grid.Column="2" Text="Usuń" Command="{Binding Source={x:Reference MainPageInstance}, Path=BindingContext.RemoveTaskCommand}" CommandParameter="{Binding .}" BackgroundColor="Red" CornerRadius="8" TextColor="White" />
                                 </Grid>
                                 <Label Text="{Binding DateAdded, StringFormat='Dodano: {0:dd-MM-yyyy HH:mm:ss}'}" TextColor="Gray" FontSize="12" />
                                 <Label Text="{Binding DateCompleted, StringFormat='Wykonano: {0:dd-MM-yyyy HH:mm:ss}'}" TextColor="Green" FontSize="12" IsVisible="{Binding IsCompleted}" />
