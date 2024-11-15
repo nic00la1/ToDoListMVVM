@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:ToDoListMVVM.ViewModels"
-             x:Class="ToDoListMVVM.MainPage">
+             x:Class="ToDoListMVVM.MainPage"
+             x:Name="MainPageInstance">
 
     <ContentPage.BindingContext>
         <vm:MainPageViewModel />
@@ -20,8 +21,10 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <CheckBox IsChecked="{Binding IsCompleted}" IsEnabled="{Binding IsEnabled}" />
-                                <Label Text="{Binding Description}" TextColor="Red" />
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <Label Grid.Column="0" Text="{Binding Description}" TextColor="Red" />
+                                    <Button Grid.Column="1" Text="Usuń" Command="{Binding Source={x:Reference MainPageInstance}, Path=BindingContext.RemoveTaskCommand}" CommandParameter="{Binding .}" BackgroundColor="Red" CornerRadius="8" />
+                                </Grid>
                                 <BoxView HeightRequest="1" BackgroundColor="Black" />
                             </StackLayout>
                         </DataTemplate>
