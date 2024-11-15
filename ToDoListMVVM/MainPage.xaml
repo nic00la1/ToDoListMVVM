@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ToDoListMVVM.ViewModels"
+             x:Class="ToDoListMVVM.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Grid ColumnDefinitions="*, Auto" Padding="16">
+                <Entry Grid.Column="0" Placeholder="Nowe zadanie" Text="{Binding NewTaskDescription}" />
+                <Button Grid.Column="1" Text="Dodaj" Command="{Binding AddTaskCommand}" BackgroundColor="Red" CornerRadius="8" />
+            </Grid>
+
+            <StackLayout Padding="16">
+                <CollectionView ItemsSource="{Binding Tasks}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <CheckBox IsChecked="{Binding IsCompleted}" IsEnabled="{Binding IsEnabled}" />
+                                <Label Text="{Binding Description}" TextColor="Red" />
+                                <BoxView HeightRequest="1" BackgroundColor="Black" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
