@@ -1,6 +1,9 @@
 # To-Do Lista w strukturze MVVM
+
 ## Stan początkowy
-![image](https://github.com/user-attachments/assets/7defdfa8-0593-4dfa-91be-fc16d7ee6b41)
+![image](https://github.com/user-attachments/assets/5ed0fa72-9863-48a0-8003-167e2d123382)
+
 
 ## Stan po interakcji użytkownika
-![image](https://github.com/user-attachments/assets/22b1bf3a-f177-4dfe-9fd8-3639dac54093)
+![image](https://github.com/user-attachments/assets/798283dd-ba54-45e0-b8da-0fde44a7707b)
+
